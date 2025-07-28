@@ -152,6 +152,7 @@ class UserModel {
   final DateTime lastLoginAt;
   final bool isActive;
   final Map<String, dynamic>? preferences;
+  final String avatarUrl;
 
   UserModel({
     required this.uid,
@@ -165,6 +166,7 @@ class UserModel {
     required this.lastLoginAt,
     this.isActive = true,
     this.preferences,
+    required this.avatarUrl,
   });
 
   // Conversion vers Map pour Firestore
@@ -181,6 +183,7 @@ class UserModel {
       'lastLoginAt': Timestamp.fromDate(lastLoginAt),
       'isActive': isActive,
       'preferences': preferences ?? {},
+      'avatarUrl': avatarUrl,
     };
   }
 
@@ -198,6 +201,7 @@ class UserModel {
       lastLoginAt: (map['lastLoginAt'] as Timestamp).toDate(),
       isActive: map['isActive'] ?? true,
       preferences: map['preferences'],
+      avatarUrl: map['avatarUrl'] ?? '',
     );
   }
 
@@ -213,6 +217,7 @@ class UserModel {
     DateTime? lastLoginAt,
     bool? isActive,
     Map<String, dynamic>? preferences,
+    String? avatarUrl,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
@@ -226,6 +231,7 @@ class UserModel {
       lastLoginAt: lastLoginAt ?? this.lastLoginAt,
       isActive: isActive ?? this.isActive,
       preferences: preferences ?? this.preferences,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
     );
   }
 }
@@ -252,6 +258,10 @@ class WorkerModel {
   final Map<String, double>? priceList; // Tarifs par service
   final List<String>? workingHours; // Heures de travail
   final bool isVerified;
+  final String idType; // 'cni', 'permis', 'passeport'
+  final String idPhotoUrl; // Photo de la pièce d'identité
+  final String faceVerificationUrl; // Photo prise pour la vérification faciale
+  final String avatarUrl;
 
   WorkerModel({
     required this.uid,
@@ -275,6 +285,10 @@ class WorkerModel {
     this.priceList,
     this.workingHours,
     this.isVerified = false,
+    required this.idType,
+    required this.idPhotoUrl,
+    required this.faceVerificationUrl,
+    required this.avatarUrl,
   });
 
   // Conversion vers Map pour Firestore
@@ -305,6 +319,10 @@ class WorkerModel {
       'priceList': priceList ?? {},
       'workingHours': workingHours ?? [],
       'isVerified': isVerified,
+      'idType': idType,
+      'idPhotoUrl': idPhotoUrl,
+      'faceVerificationUrl': faceVerificationUrl,
+      'avatarUrl': avatarUrl,
     };
   }
 
@@ -340,6 +358,10 @@ class WorkerModel {
       priceList: Map<String, double>.from(map['priceList'] ?? {}),
       workingHours: List<String>.from(map['workingHours'] ?? []),
       isVerified: map['isVerified'] ?? false,
+      idType: map['idType'] ?? '',
+      idPhotoUrl: map['idPhotoUrl'] ?? '',
+      faceVerificationUrl: map['faceVerificationUrl'] ?? '',
+      avatarUrl: map['avatarUrl'] ?? '',
     );
   }
   
@@ -366,6 +388,10 @@ class WorkerModel {
   Map<String, double>? priceList,
   List<String>? workingHours,
   bool? isVerified,
+  String? idType,
+  String? idPhotoUrl,
+  String? faceVerificationUrl,
+  String? avatarUrl,
 }) {
   return WorkerModel(
     uid: uid ?? this.uid,
@@ -389,6 +415,10 @@ class WorkerModel {
     priceList: priceList ?? this.priceList,
     workingHours: workingHours ?? this.workingHours,
     isVerified: isVerified ?? this.isVerified,
+    idType: idType ?? this.idType,
+    idPhotoUrl: idPhotoUrl ?? this.idPhotoUrl,
+    faceVerificationUrl: faceVerificationUrl ?? this.faceVerificationUrl,
+    avatarUrl: avatarUrl ?? this.avatarUrl,
   );
 }
   
@@ -2740,7 +2770,6 @@ class _AuthScreenState extends State<AuthScreen>
       ),
     );
   }
-
   Widget _buildActionButton({
     required String text,
     required VoidCallback onPressed,
@@ -3524,7 +3553,6 @@ class _HomeScreenState extends State<HomeScreen>
       ),
     );
   }
-
   Widget _buildActionButton({
     required String title,
     required IconData icon,
@@ -4321,7 +4349,6 @@ class _WorkerRegistrationScreenState extends State<WorkerRegistrationScreen>
       ),
     );
   }
-
   Widget _buildPhotosStep() {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
@@ -4681,7 +4708,6 @@ class SearchScreen extends StatefulWidget {
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
-
 class _SearchScreenState extends State<SearchScreen> with TickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
@@ -6098,7 +6124,6 @@ class CreateRequestScreen extends StatefulWidget {
   @override
   _CreateRequestScreenState createState() => _CreateRequestScreenState();
 }
-
 class _CreateRequestScreenState extends State<CreateRequestScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
@@ -7448,7 +7473,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
   // Section options du compte
   Widget _buildAccountOptionsSection() {
     return Card(
@@ -8223,7 +8247,6 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
       ),
     );
   }
-
   void _showWorkerDetails(WorkerModel worker) {
     showModalBottomSheet(
       context: context,
@@ -8998,7 +9021,6 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     );
   }
 }
-
 // Widget pour les options de pièces jointes
 class _AttachmentOption extends StatelessWidget {
   final IconData icon;
