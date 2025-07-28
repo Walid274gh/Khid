@@ -626,8 +626,6 @@ enum MessageType {
   location,
   file
 }
-
-
 class AuthService {
   static final AuthService _instance = AuthService._internal();
   factory AuthService() => _instance;
@@ -1339,7 +1337,6 @@ class NotificationService {
     await showLocalNotification(title, body, data);
   }
 }
-
 class BackgroundService {
   static final BackgroundService _instance = BackgroundService._internal();
   factory BackgroundService() => _instance;
@@ -1963,7 +1960,6 @@ class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
-
 class _SplashScreenState extends State<SplashScreen> 
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
@@ -2263,7 +2259,6 @@ class AuthScreen extends StatefulWidget {
   @override
   State<AuthScreen> createState() => _AuthScreenState();
 }
-
 class _AuthScreenState extends State<AuthScreen> 
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
@@ -2871,7 +2866,6 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
 class _HomeScreenState extends State<HomeScreen> 
     with TickerProviderStateMixin {
   int _currentIndex = 0;
@@ -3653,7 +3647,6 @@ class _HomeScreenState extends State<HomeScreen>
       ),
     );
   }
-
   Widget _buildBottomNavigationBar() {
     return Container(
       decoration: BoxDecoration(
@@ -4451,7 +4444,6 @@ class _WorkerRegistrationScreenState extends State<WorkerRegistrationScreen>
       ),
     );
   }
-
   Widget _buildVerificationStep() {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
@@ -5228,7 +5220,6 @@ class _SearchScreenState extends State<SearchScreen> with TickerProviderStateMix
       ),
     );
   }
-
   Widget _buildWorkersList() {
     if (_filteredWorkers.isEmpty) {
       return Center(
@@ -5721,7 +5712,7 @@ class _RequestsScreenState extends State<RequestsScreen> with TickerProviderStat
 );
           },
         );
-      },
+      }
     );
   }
 
@@ -6487,7 +6478,6 @@ class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
-
 class _ChatScreenState extends State<ChatScreen> {
   List<Map<String, dynamic>> _chatList = [];
   bool _isLoading = true;
@@ -6952,7 +6942,6 @@ class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
-
 class _ProfileScreenState extends State<ProfileScreen> {
   final ImagePicker _picker = ImagePicker();
   UserModel? _currentUser;
@@ -7620,7 +7609,6 @@ class ServiceDetailScreen extends StatefulWidget {
   @override
   State<ServiceDetailScreen> createState() => _ServiceDetailScreenState();
 }
-
 class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
   List<WorkerModel> _nearbyWorkers = [];
   bool _isLoading = true;
@@ -8415,7 +8403,6 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen> {
       ),
     );
   }
-
   void _contactWorker(WorkerModel worker) {
     final currentUser = AuthService().currentUser;
     if (currentUser == null) return;
@@ -9084,7 +9071,6 @@ class MapScreen extends StatefulWidget {
   @override
   _MapScreenState createState() => _MapScreenState();
 }
-
 class _MapScreenState extends State<MapScreen> {
   GoogleMapController? _mapController;
   Position? _currentPosition;
@@ -9772,7 +9758,6 @@ class _MapScreenState extends State<MapScreen> {
     await _createMarkers();
     setState(() => _isLoading = false);
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11312,7 +11297,6 @@ class _PaymentScreenState extends State<PaymentScreen> with TickerProviderStateM
       ),
     );
   }
-
   Widget _buildPayButton() {
     return Container(
       width: double.infinity,
@@ -12107,7 +12091,6 @@ class WorkerCard extends StatelessWidget {
     );
   }
 }
-
 class RequestCard extends StatelessWidget {
   final RequestModel request;
   final UserModel? user;
@@ -12848,7 +12831,6 @@ class RatingWidget extends StatelessWidget {
     );
   }
 }
-
 class LoadingWidget extends StatelessWidget {
   final String? message;
   final Color? color;
