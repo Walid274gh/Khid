@@ -6503,6 +6503,7 @@ class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
+
 class _ChatScreenState extends State<ChatScreen> {
   List<Map<String, dynamic>> _chatList = [];
   bool _isLoading = true;
