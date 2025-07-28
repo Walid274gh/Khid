@@ -6698,10 +6698,7 @@ class _ChatScreenState extends State<ChatScreen> {
   isWorker: chatData['userType'] == 'worker', // <-- أضف هذا السطر
 ),
       ),
-    ).then((_) {
-      // Recharger la liste après retour du chat
-      _loadChatList();
-    });
+    );
   }
 
   Widget _buildChatItem(Map<String, dynamic> chatData) {
